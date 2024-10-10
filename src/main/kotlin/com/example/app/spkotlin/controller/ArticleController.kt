@@ -1,37 +1,45 @@
 package com.example.app.spkotlin.controller
 
-import com.example.app.spkotlin.model.Article
-import org.springframework.http.HttpStatus
+import com.example.app.spkotlin.dto.ArticleDTO
+import com.example.app.spkotlin.service.ArticleService
 import org.springframework.web.bind.annotation.*
-import org.springframework.web.server.ResponseStatusException
 
 @RestController
 @RequestMapping("/api/v1/articles")
-class ArticleController {
-
-    val articles = mutableListOf(Article(title = "Meu Título", content ="conteúdo"))
+class ArticleController(private val articleService: ArticleService) {
 
     @GetMapping
-    fun articles(): MutableList<Article> {
-        return articles
+    fun getAllArticles(): List<ArticleDTO> {
+        return articleService.getAllArticles()
     }
 
-    @GetMapping("/{slug}")
-    fun articles(@PathVariable slug: String): Article =
-        articles.find {
-            article -> article.slug == slug } ?: throw ResponseStatusException(HttpStatus.NOT_FOUND)
+    @GetMapping("/recents")
+    fun getRecentArticles(): List<ArticleDTO> {
+        return articleService.getRecentArticles()
+    }
+
+    @GetMapping("/{id}")
+    fun getArticleById(@PathVariable id: Long): ArticleDTO {
+        return articleService.getArticleById(id)
+    }
+
+    @GetMapping("/slug/{slug}")
+    fun getArticleBySlug(@PathVariable slug: String): ArticleDTO {
+        return articleService.getArticleBySlug(slug)
+    }
 
     @PostMapping
-    fun newArticle(@RequestBody article: Article): Article {
-        articles.add(article)
-        return article
+    fun createArticle(@RequestBody articleDTO: ArticleDTO): ArticleDTO {
+        return articleService.createArticle(articleDTO)
     }
 
-    @PutMapping("/{title}")
-    fun updateArticle(@RequestBody article: Article, @PathVariable title: String): Article {
-        val existingArticle = articles.find { it.title == title } ?: throw  ResponseStatusException(HttpStatus.NOT_FOUND)
-        existingArticle.content = article.content;
-        return article
+    @PutMapping("/{id}")
+    fun updateArticle(@PathVariable id: Long, @RequestBody updatedArticleDTO: ArticleDTO): ArticleDTO {
+        return articleService.updateArticle(id, updatedArticleDTO)
     }
 
+    @DeleteMapping("/{id}")
+    fun deleteArticle(@PathVariable id: Long) {
+        articleService.deleteArticle(id)
+    }
 }
