@@ -7,4 +7,6 @@ data class ArticleDTO(
     val content: String,
     val slug: String?,
     val createdAt: LocalDateTime = LocalDateTime.now()
-)
+) {
+    var formattedCreatedAt: String? = null
+}

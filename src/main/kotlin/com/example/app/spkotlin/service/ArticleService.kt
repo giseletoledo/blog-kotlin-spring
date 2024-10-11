@@ -8,7 +8,7 @@ import com.example.app.spkotlin.repository.ArticleRepository
 import org.springframework.stereotype.Service
 
 @Service
-class ArticleService(private val articleRepository: ArticleRepository) {
+class ArticleService<Article>(private val articleRepository: ArticleRepository) {
 
     fun getAllArticles(): List<ArticleDTO> {
         return articleRepository.findAll().map { it.toDTO() }
@@ -53,5 +53,9 @@ class ArticleService(private val articleRepository: ArticleRepository) {
             throw IllegalArgumentException("Artigo não encontrado com ID: $id")
         }
         articleRepository.delete(existingArticle)
+    }
+
+    fun searchByTitle(title: String): List<ArticleDTO> {
+        return articleRepository.findByTitleContainingIgnoreCase(title).map { it.toDTO() }
     }
 }

@@ -9,4 +9,5 @@ interface ArticleRepository : JpaRepository<Article, Long> {
     fun findAllByOrderByCreatedAtDesc(): Iterable<Article>
     fun findBySlug(slug: String): Article?
     fun findByTitle(title: String): Article?
+    fun findByTitleContainingIgnoreCase(title: String): List<Article>
 }
