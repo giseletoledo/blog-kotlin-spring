@@ -1,0 +1,203 @@
+/* Estilos base */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    font-family: Arial, sans-serif;
+}
+
+/* Layout principal */
+.container {
+    display: flex;
+    width: 100%;
+    height: 100vh; /* Garante que a altura ocupe 100% da tela */
+}
+
+/* Estilos da barra lateral */
+.sidebar {
+    background-color: #576bc3;
+    width: 250px; /* Largura fixa da sidebar */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%; /* Garante que a sidebar ocupe toda a altura */
+    overflow-y: auto; /* Permite rolagem se o conteúdo for maior */
+    transition: width 0.3s; /* Transição suave ao abrir/fechar */
+}
+
+  .avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-image: url('/static/images/avatar.jpg');
+            background-size: cover;
+            background-position: center;
+            margin-bottom: 20px;
+        }
+/* Estilos do menu */
+.menu {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.mini-icons {
+        display: flex; /* Alinha os miniícones lado a lado */
+        gap: 10px; /* Espaço entre os ícones */
+        margin-top: 10px; /* Espaçamento acima da lista de ícones */
+    }
+
+    .mini-icon {
+        width: 30px; /* Largura dos ícones */
+        height: 30px; /* Altura dos ícones */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer; /* Cursor de mão ao passar sobre o ícone */
+        transition: transform 0.2s; /* Animação suave ao passar o mouse */
+    }
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    align-self: center;
+    color: white;
+    margin: 10px 0;
+    cursor: pointer;
+    padding: 10px; /* Adiciona padding para aumentar a área clicável */
+}
+
+.menu-item img {
+    margin-right: 5px; /* Menor espaço entre o ícone e o texto */
+    width: 20px; /* Tamanho fixo para os ícones */
+    height: 20px;
+}
+
+.menu-item a {
+    color: #ffffff;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.menu-item a:hover {
+    color: #141f50;
+}
+
+
+/* Estilos da área de conteúdo */
+.content {
+    flex: 1; /* Faz com que o conteúdo ocupe o restante da tela */
+    padding: 20px; /* se for maior que a sidebar cria uma margem extra na sidebar
+    background-color: #f4f4f4;
+    overflow-y: auto; /* Permite rolagem se o conteúdo for maior */
+    height: 100%; /* Garante que a área de conteúdo ocupe 100% da altura */
+}
+
+/* Estilos do menu hamburguer */
+.menu-toggle {
+    display: none; /* Esconde por padrão */
+    cursor: pointer;
+    background-color: #576bc3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+
+.blog-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.blog-description {
+    color: white;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h1 {
+    margin-top: 0;
+}
+
+.search-bar {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.search-bar input {
+    padding: 10px;
+    flex: 1;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+.search-bar button {
+    padding: 10px 20px;
+    background-color: #576bc3;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.article {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.article-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.article-content {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.article-date {
+    font-size: 12px;
+    color: #999;
+}
+
+.articles-container ul {
+    list-style-type:none
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .sidebar {
+        height: auto; /* Altura ajustada para ocupar somente o espaço do conteúdo */
+        max-height: none; /* Removendo altura máxima */
+        padding-bottom: 10px; /* Adiciona espaço embaixo para não encostar no botão */
+        display: none; /* Esconde a sidebar por padrão */
+    }
+
+    .menu-toggle {
+        display: block; /* Mostra o botão de menu hamburguer */
+        margin: 10px;
+    }
+
+    .container {
+        flex-direction: column; /* Muda a direção do layout para coluna */
+    }
+
+    /* Estilos para mostrar a barra lateral quando ativada */
+    .sidebar.active {
+        display: flex; /* Exibe a barra lateral quando ativada */
+        width: 90%; /* Largura fixa da sidebar */
+        flex-direction: column; /* Certifica-se de que os itens fiquem em coluna */
+    }
+}
