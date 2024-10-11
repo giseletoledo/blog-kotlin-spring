@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Artigos recentes</title>
+    <link rel="stylesheet" href="/static/css/styles.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div class="container">
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button> <!-- Botão para o menu hamburguer -->
+    <div class="sidebar">
+        <div class="avatar"></div>
+        <div class="blog-title">Blog Title</div>
+        <div class="blog-description">A brief description about the blog.</div>
+        <div class="menu">
+            <div class="menu-item">
+                <a th:href="@{/articles/view}">
+                    <img src="/static/images/home-icon.png" alt="Home Icon" />
+                    <span>Home</span>
+                </a>
+            </div>
+            <div class="menu-item">
+                <a th:href="@{/articles/view/recents}">
+                    <img src="/static/images/articles-icon.png" alt="Articles Icon" />
+                    <span>Articles</span>
+                </a>
+            </div>
+            <div class="menu-item">
+            <div class="mini-icons">
+                <div class="mini-icon" title="Instagram">
+                    <img src="/static/images/instagram.png" alt="Instagram" />
+                </div>
+                <div class="mini-icon" title="Facebook">
+                    <img src="/static/images/facebook.png" alt="Facebook" />
+                </div>
+                <div class="mini-icon" title="Github">
+                    <img src="/static/images/github.png" alt="Github" />
+                </div>
+                <div class="mini-icon" title="Linkedin">
+                    <img src="/static/images/linkedin.png" alt="Linkedin" />
+                </div>
+            </div>
+                <!-- Adicione mais ícones conforme necessário -->
+            </div>
+            <!-- Adicione mais itens de menu aqui -->
+        </div>
+    </div>
+
+    <div class="content">
+        <h1 class="article-title">Recent Articles</h1>
+        <div class="articles-container">
+            <ul class="articles-list">
+                <li th:each="article : ${articles}" class="article">
+                    <h2 class="article-title" th:text="${article.title}">Article Title</h2>
+                    <p class="article-content" th:text="${article.content}">Article Content</p>
+                    <span class="article-date" th:text="${article.createdAt}">2024-10-10</span>
+                </li>
+            </ul>
+
+            <!-- Mensagem caso não haja artigos -->
+            <div th:if="${#lists.isEmpty(articles)}" class="no-articles-message">
+                <p>No articles found.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Função para alternar o menu lateral
+    function toggleMenu() {
+        const sidebar = document.querySelector('.sidebar');
+        sidebar.classList.toggle('active'); // Alterna a classe active para mostrar/esconder a sidebar
+    }
+</script>
+</body>
+</html>
