@@ -53,7 +53,7 @@
             <ul class="articles-list">
                 <li th:each="article : ${articles}" class="article">
                     <h2 class="article-title" th:text="${article.title}">Article Title</h2>
-                    <p class="article-content" th:text="${article.content}">Article Content</p>
+                    <p class="article-content" th:utext="${article.content}">Article Content</p>
                     <span class="article-date" th:text="${article.createdAt}">2024-10-10</span>
                 </li>
             </ul>

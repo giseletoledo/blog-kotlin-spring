@@ -66,7 +66,7 @@
             <!-- Iteração sobre a lista de artigos usando Thymeleaf -->
             <div th:each="article : ${articles}" class="article">
                 <div class="article-title" th:text="${article.title}">Article Title</div>
-                <div class="article-content" th:text="${article.content}">Article Content</div>
+                <div class="article-content" th:utext="${article.content}">Article Content</div>
                 <div class="article-date" th:text="${article.formattedCreatedAt}">10/10/2024 20:30</div>
             </div>
         </div>
