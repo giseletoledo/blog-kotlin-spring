@@ -32,8 +32,14 @@ class ArticleService<Article>(private val articleRepository: ArticleRepository) 
     }
 
     fun createArticle(articleDTO: ArticleDTO): ArticleDTO {
+        // Converte o DTO em uma entidade
         val article = articleDTO.toEntity()
-        return articleRepository.save(article).toDTO()
+
+        // Salva a entidade no banco de dados
+        val savedArticle = articleRepository.save(article)
+
+        // Retorna o DTO do artigo salvo
+        return savedArticle.toDTO()
     }
 
     fun updateArticle(id: Long, updatedArticleDTO: ArticleDTO): ArticleDTO {
@@ -55,7 +61,12 @@ class ArticleService<Article>(private val articleRepository: ArticleRepository) 
         articleRepository.delete(existingArticle)
     }
 
-    fun searchByTitle(title: String): List<ArticleDTO> {
-        return articleRepository.findByTitleContainingIgnoreCase(title).map { it.toDTO() }
+    fun searchByTitle(title: String): List<com.example.app.spkotlin.model.Article> {
+        if (title.length < 4) {
+            // Handle short search term (e.g., throw an exception, return an empty list)
+            throw IllegalArgumentException("Search term must be at least 4 characters long")
+        }
+
+        return articleRepository.findByTitleContainingIgnoreCase(title)
     }
 }
