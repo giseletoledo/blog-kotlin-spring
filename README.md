@@ -27,6 +27,10 @@ Este é um projeto de blog que permite aos usuários visualizar, pesquisar e int
 
 ![Screenshot da lista de artigos](https://raw.githubusercontent.com/giseletoledo/blog-kotlin-spring/refs/heads/main/artigos.png)
 
+
+![Screenshot da lista de artigos](https://raw.githubusercontent.com/giseletoledo/blog-kotlin-spring/refs/heads/main/form-cadastro-blog.png)
+
+
 ### Mobile
 
 ![Screenshot do site mobile](https://raw.githubusercontent.com/giseletoledo/blog-kotlin-spring/refs/heads/main/mobile-blog.png)
